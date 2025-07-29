@@ -21,10 +21,7 @@ const userSchema = new mongoose.Schema({
         required: function(){
             return !this.githubId;        }
     },
-    githubId: {
-        type: String,
-        unique: true
-    }
+   
 }, { timestamps: true });
 
 

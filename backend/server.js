@@ -4,11 +4,14 @@ import db from "./config/db.js";
 import usersRouter from "./routes/userRoutes.js";
 import taskRouter from "./routes/taskRoutes.js";
 import projectRouter from "./routes/projectRoutes.js"
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
