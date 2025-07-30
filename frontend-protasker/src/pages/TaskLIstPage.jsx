@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import TaskFilter from "../components/TaskFilter";
 
+import TaskForm from "../components/TaskForm";
 
 
 axios.defaults.baseURL = "http://localhost:3000/api";
@@ -12,8 +13,26 @@ function TaskListPage() {
   const [tasks, setTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
   const [users, setUsers] = useState([]);
+  const [newTask, setNewTask] = useState({
+    title: "",
+    description: "",
+    urgency: "Medium",
+    status: "To Do",
+    assignedTo: "",
+    dueDate: ""
+  });
+
+
+  const handleTaskChange = (e) => {
+    const { name, value } = e.target;
+    setNewTask((prev) => ({ ...prev, [name]: value }));
+  };    
+
 
  useEffect(() => {
+
+
+
   const fetchData = async () => {
     try {
       const realProjectId = '64cdef1234567890abcdef12'; // Replace with real one
@@ -67,10 +86,63 @@ function TaskListPage() {
     setFilteredTasks(filtered);
   };
 
+ const handleTaskSubmit = async (e) => {
+  try {
+    // Assign to a fake project ID if not included
+    const realProjectId = '64cdef1234567890abcdef12';
+    const taskToSend = { ...newTask, project: realProjectId };
+
+   
+    const res = await axios.post('/tasks', taskToSend);
+
+    
+    const updatedTasks = [...tasks, res.data];
+    setTasks(updatedTasks);
+    setFilteredTasks(updatedTasks);
+    setNewTask({
+      title: "",
+      description: "",
+      urgency: "Medium",
+      status: "To Do",
+      assignedTo: "",
+      dueDate: ""
+    });
+  } catch (error) {
+    console.error('Failed to save task. Saving to localStorage instead.', error);
+
+   
+    const localTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const updated = [...localTasks, newTask];
+    localStorage.setItem('tasks', JSON.stringify(updated));
+    setTasks(updated);
+    setFilteredTasks(updated);
+    setNewTask({
+      title: "",
+      description: "",
+      urgency: "Medium",
+      status: "To Do",
+      assignedTo: "",
+      dueDate: ""
+    });
+  }
+};
+
   return (
     <main className="container">
       <h1>All Tasks</h1>
       <TaskFilter onFilterChange={handleFilterChange} users={users} />
+
+
+      <TaskForm task = {newTask}
+        onChange={handleTaskChange}
+        onSubmit={handleTaskSubmit} 
+      
+      
+      
+      />
+
+
+
 
       <ul>
         {filteredTasks.map((task) => (

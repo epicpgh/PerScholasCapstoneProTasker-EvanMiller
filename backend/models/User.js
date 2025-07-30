@@ -16,13 +16,20 @@ const userSchema = new mongoose.Schema({
         unique: true,
         match: [/.+@.+\..+/, "Must have a valid email address"]
     },
-    password: {
-        type: String,
-        required: function(){
-            return !this.githubId;        }
+       password: {
+      type: String,
+      required: function () {
+        
+        return !this.githubId;
+      },
     },
-   
-}, { timestamps: true });
+    githubId: {
+      type: String,
+      unique: true,
+      sparse: true, // Allows multiple nulls for testins purposes.
+    },
+  },
+{ timestamps: true });
 
 
 //=======* Hash User Password with this function *=======

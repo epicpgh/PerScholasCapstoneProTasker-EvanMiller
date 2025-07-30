@@ -10,3 +10,67 @@ Currently, two official plugins are available:
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+
+
+https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-and-exporting-overview/
+
+https://www.w3schools.com/react/react_useeffect.asp
+
+https://www.w3schools.com/react/react_usestate.asp
+
+https://www.w3schools.com/react/react_jsx.asp
+
+https://stackoverflow.com/questions/68414024/reactjs-xhr-js177-post-http-localhost3000-registeruser-500-internal-server
+
+
+
+mod18Final-
+                    |_pro-tasker
+                 		|_ Backend
+                               |               |_config
+                               |               |          |_db.js
+                               |               |_controllers
+                               |               |                   |_projectController.js
+                               |               |                   |_taskController.js
+                               |               |                   |_userContoller.js
+                               |.              |_middleware
+                               |               |                     |_authMiddleware.js
+                               |               |                     |_errorHandler.js
+                               |               |_models
+                               |               |             |_Project.js
+                               |               |             |_Task.js
+                               |               |             |_User.js
+                               |               | _routes
+                               |               |             |_projectRoutes.js
+                               |               |             |_taskeRoutes.js
+                               |               |             |_userRoutes.js
+                               |               |_utils
+                               |               |        |_generateToken.js
+                               |               |_server.js
+                               |               |.env
+                               |               |.gitignore
+                               |               |package.json
+                               |
+                               |_frontend-protasker
+                               |                  |_src
+                               |                         |_clients
+                               |                         |            |_backendClients.js
+                               |                         |_components
+                               |                         |                    |_NavBar.jsx
+                               |                         |                    |_TaskFilter.jsx
+                               |                         |                    |_TaskForm.jsx
+                               |                         |                    |_TaskList.jsx
+                               |                         |_pages
+                               |                         |           |_HomePage.jsx
+                               |                         |           |_LoginPage.jsx
+                               |                         |           |_RegisterPage.jsx
+                               |                         |           |_TaskDetailPage.jsx
+                               |                         |           |_TaskListPage.jsx
+                               |                         |_App.css
+                               |                         |_App.jsx
+                               |                         |_index.css
+                               |                         |_main.jsx
+                               |.                        |_.env
+                               |.                        |_.gitignore
+                                                         |_.env.production
