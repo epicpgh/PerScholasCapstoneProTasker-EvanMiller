@@ -41,11 +41,29 @@ function TaskListPage() {
   if (error) return <p style={{ color: 'red' }}>{error}</p>;
 
   return (
-    <div className="task-list-page">
-      <h2>Your Tasks</h2>
-      <TaskFilter onFilter={setSearch} />
-      <TaskList tasks={filteredTasks} />
-    </div>
+    <ul style={{ listStyle: "none", padding: 0 }}>
+      {tasks.map((task) => (
+        <li
+          key={task._id}
+          style={{
+            border: "1px solid #ccc",
+            padding: "1rem",
+            marginBottom: "1rem",
+            borderRadius: "8px"
+          }}
+        >
+          <h4>{task.title}</h4>
+          <p>{task.description}</p>
+          <p>Status: {task.status}</p>
+          <p>
+            Priority:{" "}
+            <strong style={{ color: task.priority === "High" ? "red" : "black" }}>
+              {task.priority || "Medium"}
+            </strong>
+          </p>
+        </li>
+      ))}
+    </ul>
   );
 }
 

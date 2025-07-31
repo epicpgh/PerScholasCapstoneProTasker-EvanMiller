@@ -16,7 +16,7 @@ function TaskForm({ task = {}, onChange, onSubmit }) {
         id="description"
         onChange={onChange}
         name="description"
-        value={task.descriptionc|| ''}
+        value={task.description|| ''}
         style={{ marginBottom: "1rem" }}
 />
 

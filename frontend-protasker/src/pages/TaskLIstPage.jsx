@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import TaskFilter from "../components/TaskFilter";
 
+import { useNavigate } from "react-router-dom";
+
 import TaskForm from "../components/TaskForm";
 
 
@@ -13,6 +15,8 @@ function TaskListPage() {
   const [tasks, setTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
+  const [error, setError] = useState(null);
   const [newTask, setNewTask] = useState({
     title: "",
     description: "",
@@ -31,11 +35,9 @@ function TaskListPage() {
 
  useEffect(() => {
 
-
-
   const fetchData = async () => {
     try {
-      const realProjectId = '64cdef1234567890abcdef12'; // Replace with real one
+      const realProjectId = '64cdef1234567890abcdef12'
       const resTasks = await axios.get(`/tasks/project/${realProjectId}`);
       const resUsers = await axios.get('/users');
       setTasks(resTasks.data);
@@ -43,6 +45,7 @@ function TaskListPage() {
       setUsers(resUsers.data);
     } catch (err) {
       console.error('Error fetching data:', err);
+      setError('Failed to fetch tasks or users. Please try again later.');
     }
   };
 
@@ -88,7 +91,7 @@ function TaskListPage() {
 
  const handleTaskSubmit = async (e) => {
   try {
-    // Assign to a fake project ID if not included
+    e.preventDefault();
     const realProjectId = '64cdef1234567890abcdef12';
     const taskToSend = { ...newTask, project: realProjectId };
 

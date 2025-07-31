@@ -3,11 +3,11 @@
 function HomePage(){
     return(
          <>
-         <h1>Home Page</h1>
+         <h1>Garfield Pro-Tasker</h1>
 
-         <p>Welcome to Pro-Tasker, your ultimate task management solution! Whether you're juggling multiple projects or just trying to stay organized, Pro-Tasker is here to help you streamline your workflow and boost your productivity.</p>
-         <p>With Pro-Tasker, you can easily create, assign, and track tasks, set deadlines, and collaborate with your team in real-time. Our intuitive interface makes it simple to manage your tasks, so you can focus on what really matters.</p>
-         <p>Get started today and take control of your tasks with Pro-Tasker!</p>
+         <p>Welcome to the Garfield Pro-Tasker, your ultimate task management solution! Garfield understands the struggles of managing tasks, especially on Mondays.</p>
+         <p>Beloved cartoon icon Garfield will guide you through your project with his trademark droll humor, and dry witticisms.</p>
+         <p>Garfield will channel all of your hate towards Mondays into a simple, easy to use task management tool!</p>
          <p>Features:</p>
          <ul>
             <li>Create and manage tasks with ease</li>
