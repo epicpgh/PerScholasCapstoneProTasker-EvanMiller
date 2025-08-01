@@ -23,11 +23,11 @@ const userSchema = new mongoose.Schema({
         return !this.githubId;
       },
     },
-    githubId: {
-      type: String,
-      unique: true,
-      sparse: true, // Allows multiple nulls for testins purposes.
-    },
+    // githubId: {
+    //   type: String,
+    //   unique: true,
+    //   sparse: true, // Allows multiple nulls for testins purposes.
+    // },
   },
 { timestamps: true });
 
