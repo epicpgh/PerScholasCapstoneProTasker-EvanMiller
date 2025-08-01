@@ -1,24 +1,54 @@
 
 import express from 'express';
-import { registerUser, loginUser, getUserProfile } from '../controllers/userController.js';
-import { protect } from '../middleware/authMiddleware.js';
-
-const router = express.Router();
-
-router.post('/register', registerUser);
-router.post('/login', loginUser);
-router.get('/me', protect, getUserProfile);
-
-
 import Task from '../models/Task.js';
-router.get('/project/:projectId', async (req, res) => {
+
+
+const router = express.Router();        
+
+router.get('/', async (req, res) => {
   try {
-    const tasks = await Task.find({ project: req.params.projectId });
+    const tasks = await Task.find();
     res.json(tasks);
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch project tasks' });
+    res.status(500).json({ error: 'Failed to fetch tasks' });
   }
 });
 
-export default router;
+router.post('/', async (req, res) => {
+  try {
+    const newTask = new Task(req.body);
+    const savedTask = await newTask.save();
+    res.status(201).json(savedTask);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to create task' });
+  }
+});
 
+router.put('/:taskId', async (req, res) => {
+  try {
+    const updatedTask = await Task.findByIdAndUpdate(req.params.taskId, req.body, { new: true });
+    res.json(updatedTask);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to update task' });
+  }
+});
+
+router.get('/:taskId', async (req, res) => {
+  try {
+    const task = await Task.findById(req.params.taskId);
+    res.json(task);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch task' });
+  }
+});
+
+router.delete('/:taskId', async (req, res) => {
+  try {
+    await Task.findByIdAndDelete(req.params.taskId);
+    res.status(204).send();
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to delete task' });
+  }
+});
+
+  export default router;

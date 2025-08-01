@@ -5,10 +5,11 @@ import GarfieldBanner from './components/GarfieldBanner';
 import NavBar from './components/NavBar';
 
 import TaskDetailPage from './pages/TaskDetailPage';
-import TaskListPage from './pages/TaskLIstPage';
 import HomePage from './pages/HomePage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
+import CurrentTaskPage from './pages/CurrentTaskPage';
+import TaskListPage from './pages/TaskLIstPage';
 
 import './App.css';
 
@@ -23,7 +24,7 @@ function App() {
         <NavBar />
       </div>
 
-      {/* ✅ Here’s the new container for page content */}
+    
       <main className="container">
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -31,6 +32,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/tasks" element={<TaskListPage />} />
           <Route path="/tasks/:id" element={<TaskDetailPage />} />
+          <Route path='/tasks/:id' element={<CurrentTaskPage />} />'
         </Routes>
       </main>
     </>

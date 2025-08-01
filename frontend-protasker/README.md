@@ -23,6 +23,16 @@ https://www.w3schools.com/react/react_jsx.asp
 
 https://stackoverflow.com/questions/68414024/reactjs-xhr-js177-post-http-localhost3000-registeruser-500-internal-server
 
+https://www.w3schools.com/react/react_events.asp
+
+
+https://legacy.reactjs.org/docs/faq-styling.html
+
+https://stackoverflow.com/questions/54462227/rangeerror-invalid-time-value
+
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+
 
 
 mod18Final-

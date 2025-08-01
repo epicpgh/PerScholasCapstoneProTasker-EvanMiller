@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import TaskFilter from "../components/TaskFilter";
-
 import { useNavigate } from "react-router-dom";
+
 
 import TaskForm from "../components/TaskForm";
 
 
-axios.defaults.baseURL = "http://localhost:3000/api";
+axios.defaults.baseURL = "http://localhost:5173/api";
 
 
 
@@ -27,6 +27,9 @@ function TaskListPage() {
   });
 
 
+
+
+
   const handleTaskChange = (e) => {
     const { name, value } = e.target;
     setNewTask((prev) => ({ ...prev, [name]: value }));
@@ -37,15 +40,20 @@ function TaskListPage() {
 
   const fetchData = async () => {
     try {
-      const realProjectId = '64cdef1234567890abcdef12'
-      const resTasks = await axios.get(`/tasks/project/${realProjectId}`);
-      const resUsers = await axios.get('/users');
-      setTasks(resTasks.data);
-      setFilteredTasks(resTasks.data);
-      setUsers(resUsers.data);
+      const response = await axios.get('/tasks');
+      setTasks(response.data);
+      setFilteredTasks(response.data);
+      const usersResponse = await axios.get('/users');
+      setUsers(usersResponse.data);
     } catch (err) {
-      console.error('Error fetching data:', err);
+      console.error('Error fetching tasks or users:', err);
       setError('Failed to fetch tasks or users. Please try again later.');
+     
+
+
+      const localTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+      setTasks(localTasks);
+      setFilteredTasks(localTasks);
     }
   };
 
@@ -136,20 +144,26 @@ function TaskListPage() {
       <TaskFilter onFilterChange={handleFilterChange} users={users} />
 
 
-      <TaskForm task = {newTask}
+      <TaskForm
+        task={newTask}
         onChange={handleTaskChange}
-        onSubmit={handleTaskSubmit} 
-      
-      
-      
+        onSubmit={handleTaskSubmit}
       />
 
-
-
-
       <ul>
-        {filteredTasks.map((task) => (
-          <li key={task._id} className="task-card">
+        {(Array.isArray(filteredTasks) ? filteredTasks : []).map((task, index) => (
+          <li
+            key={task._id || `task-${index}`}
+            className="task-card"
+            onClick={() => navigate(`/tasks/${task._id}`)}
+            style={{
+              cursor: "pointer",
+              border: "1px solid #ccc",
+              padding: "10px",
+              marginBottom: "10px",
+              borderRadius: "8px"
+            }}
+          >
             <h3>{task.title}</h3>
             <p>{task.description}</p>
             <small>Status: {task.status}</small>

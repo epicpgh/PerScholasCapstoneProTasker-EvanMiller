@@ -9,13 +9,18 @@ function TaskDetailPage() {
 
   const [task, setTask] = useState({
     title: '',
-    description: ''
+    description: '',
+    completed: false,
+    priority: 'Low',
+    dueDate: '',
+    status: 'To do',
+    urgency: 'Medium',
+    assignedTo: ''
   });
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  // Fetch task on mount
   useEffect(() => {
     axios.get(`/api/tasks/${id}`)
       .then((res) => {
@@ -47,6 +52,19 @@ function TaskDetailPage() {
     } catch (err) {
       console.error(err);
       setError('Failed to update task.');
+    }
+  };
+
+  const handleDelete = async () => {
+    if (window.confirm('Are you sure you want to delete this task?')) {
+      try {
+        await axios.delete(`/api/tasks/${id}`);
+        alert('Task deleted!');
+        navigate('/tasks'); // go back to task list
+      } catch (err) {
+        console.error(err);
+        setError('Failed to delete task.');
+      }
     }
   };
 

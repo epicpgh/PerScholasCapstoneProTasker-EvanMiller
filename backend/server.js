@@ -20,6 +20,11 @@ app.use("/api/users", usersRouter);
 app.use("/api/tasks", taskRouter);
 app.use('/api/projects', projectRouter)
 
+
+app.use('*', (req, res)=>{
+  res.status(404).json({message: 'Route not found'})
+})
+
 db.once("open", () => {
   app.listen(PORT, () => console.log(`🌍 Now listening on localhost:${PORT}`));
 });

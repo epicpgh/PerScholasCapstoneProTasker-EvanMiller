@@ -1,4 +1,12 @@
-function TaskForm({ task = {}, onChange, onSubmit }) {
+
+
+
+
+
+
+
+
+function TaskForm({ task = {}, onChange, onSubmit, onDelete }) {
   return (
     <form onSubmit={onSubmit} style={{display: 'flex', flexDirection: 'column', maxWidth: '400px'}}>
       <label htmlFor="title">Title:</label>
@@ -18,7 +26,7 @@ function TaskForm({ task = {}, onChange, onSubmit }) {
         name="description"
         value={task.description|| ''}
         style={{ marginBottom: "1rem" }}
-/>
+></textarea>
 
     <label htmlFor="urgency">Urgency:</label>
       <select
@@ -55,8 +63,28 @@ function TaskForm({ task = {}, onChange, onSubmit }) {
           <option value="Overdue">Overdue</option>
         </select> 
 
+        <label htmlFor="completed">
+          <input 
+            id="completed"
+            type="checkbox"
+            name="completed"
+            checked={task.completed || false}
+            onChange={(e) => onChange({ target: { name: 'completed', value: e.target.checked } })}
+            style={{ marginBottom: "1rem" }}
+          /> Completed
+        </label>
+
 
       <button type="submit">{task.id ? "Update Task" : "Add Task" } :</button>
+
+
+      {onDelete && (
+        <button
+          type="button"
+          onClick={onDelete}
+          style={{ marginTop: "1rem", backgroundColor: 'red', color: 'white' }}
+        >Delete Task</button> 
+      )}
     </form>
   );
 }
