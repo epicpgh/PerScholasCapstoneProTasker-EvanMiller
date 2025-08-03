@@ -1,12 +1,8 @@
 import axios from "axios";
 
-const backendClient = axios.create({
-  baseURL: "http://localhost:3000/api",
-  headers: {
-    "Content-Type": "application/json"
-  }
+export const backendClient = axios.create({
+  baseURL: `${import.meta.env.VITE_BACKEND_URL}/api`,
 });
-
 
 
 export default backendClient;

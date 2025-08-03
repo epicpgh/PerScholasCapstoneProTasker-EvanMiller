@@ -36,6 +36,8 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
 https://stackoverflow.com/questions/79571302/how-to-solve-path-to-regexp-dependency-issue-in-express-5-1-0
 
 
+https://medium.com/@thejasonfile/testing-routes-with-postman-ab5d50da9c3f
+
 mod18Final-
                     |_pro-tasker
                  		|_ Backend
@@ -68,11 +70,13 @@ mod18Final-
                                |                         |_clients
                                |                         |            |_backendClients.js
                                |                         |_components
+                               |                         |                    |_GarfieldBanner.jsx
                                |                         |                    |_NavBar.jsx
                                |                         |                    |_TaskFilter.jsx
                                |                         |                    |_TaskForm.jsx
                                |                         |                    |_TaskList.jsx
                                |                         |_pages
+                               |                         |.          |_CurrentTaskPage.jsx
                                |                         |           |_HomePage.jsx
                                |                         |           |_LoginPage.jsx
                                |                         |           |_RegisterPage.jsx

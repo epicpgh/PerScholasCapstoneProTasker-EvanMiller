@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-router.put('/:taskId', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const updatedTask = await Task.findByIdAndUpdate(req.params.taskId, req.body, { new: true });
     res.json(updatedTask);
@@ -33,7 +33,7 @@ router.put('/:taskId', async (req, res) => {
   }
 });
 
-router.get('/:taskId', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const task = await Task.findById(req.params.taskId);
     res.json(task);
@@ -42,9 +42,9 @@ router.get('/:taskId', async (req, res) => {
   }
 });
 
-router.delete('/:taskId', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    await Task.findByIdAndDelete(req.params.taskId);
+    await Task.findByIdAndDelete(req.params.id);
     res.status(204).send();
   } catch (err) {
     res.status(500).json({ error: 'Failed to delete task' });

@@ -5,8 +5,16 @@
 
 
 
-
 function TaskForm({ task = {}, onChange, onSubmit, onDelete }) {
+  task = task || {
+    title: '',
+    description: '',
+    urgency: 'Medium',
+    status: 'To do',
+    dueDate: '',
+    completed: false,
+    assignedTo: ''
+  };
   return (
     <form onSubmit={onSubmit} style={{display: 'flex', flexDirection: 'column', maxWidth: '400px'}}>
       <label htmlFor="title">Title:</label>
@@ -69,13 +77,13 @@ function TaskForm({ task = {}, onChange, onSubmit, onDelete }) {
             type="checkbox"
             name="completed"
             checked={task.completed || false}
-            onChange={(e) => onChange({ target: { name: 'completed', value: e.target.checked } })}
+            onChange={onChange}
             style={{ marginBottom: "1rem" }}
           /> Completed
         </label>
 
 
-      <button type="submit">{task.id ? "Update Task" : "Add Task" } :</button>
+      <button type="submit">{task._id ? "Update Task" : "Add Task" } :</button>
 
 
       {onDelete && (
